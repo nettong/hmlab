@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>정재민 교수 - Hyperconnected Media Lab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Malgun Gothic', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        :root {
+            --primary-blue: #003d82;
+            --light-blue: #0066cc;
+            --lighter-blue: #e6f2ff;
+            --gray: #666;
+            --light-gray: #f8f9fa;
+        }
+
+        header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--light-blue) 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        section {
+            margin-bottom: 4rem;
+        }
+
+        h2 {
+            color: var(--primary-blue);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--light-blue);
+        }
+
+        h3 {
+            color: var(--primary-blue);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .publication-item {
+            padding: 1.5rem;
+            background: var(--lighter-blue);
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--light-blue);
+        }
+
+        .publication-item h4 {
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-year {
+            color: var(--light-blue);
+            font-weight: 600;
+            margin-right: 0.5rem;
+        }
+
+        .students-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .student-card {
+            background: var(--lighter-blue);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+        }
+
+        .student-name {
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .student-level {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .news-item {
+            padding: 1.5rem;
+            background: white;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+        }
+
+        .news-date {
+            color: var(--light-blue);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-item a {
+            color: var(--light-blue);
+            text-decoration: none;
+        }
+
+        .news-item a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: var(--lighter-blue);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .contact-card h3 {
+            margin-top: 0;
+        }
+
+        footer {
+            background: var(--primary-blue);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--primary-blue);
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">HM Lab</div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#professor">Professor</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#students">Students</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <h1>Hyperconnected Media Lab</h1>
+        <p>초연결 미디어 연구실</p>
+        <p style="margin-top: 2rem; font-size: 1rem;">
+            모든 것이 연결된 사회에서 미디어 정책, 산업 분석, 로봇 저널리즘, 미디어 기업의 조직문화와 리더십을 연구합니다.
+        </p>
+    </section>
+
+    <div class="container">
+        <section id="professor">
+            <h2>Professor</h2>
+            <div class="card">
+                <h3>정재민 (Jaemin Jung)</h3>
+                <p><strong>KAIST 문술미래전략대학원 교수</strong></p>
+                
+                <h3>학력</h3>
+                <ul>
+                    <li>University of Florida 언론학 박사</li>
+                    <li>서강대학교 신문방송학 석사</li>
+                    <li>서강대학교 신문방송학 학사</li>
+                </ul>
+
+                <h3>주요 경력</h3>
+                <ul>
+                    <li>KAIST 인문사회융합과학대학장 겸 인문사회과학연구소장 (2023-2025)</li>
+                    <li>KAIST 문술미래전략대학원장 (2020-2022)</li>
+                    <li>KAIST 정보미디어경영대학원장 (2017-2019)</li>
+                    <li>KAIST 정보미디어경영대학원 / 문술미래전략대학원 교수 (2009.9-현재)</li>
+                    <li>서울여자대학교 언론영상학부 교수 (2005.3-2009.8)</li>
+                    <li>University of West Florida 교수 (2003.8-2005.2)</li>
+                    <li>디지틀 조선일보 기자 (1996-1998)</li>
+                    <li>불교텔레비전 프로듀서 (1994-1995)</li>
+                </ul>
+
+                <h3>연구 분야</h3>
+                <ul>
+                    <li>미디어 정책 & 산업 분석</li>
+                    <li>로봇 저널리즘</li>
+                    <li>미디어 기업 조직문화/리더십</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2>Publications</h2>
+            
+            <h3>저서</h3>
+            <div class="publication-item">
+                <h4><span class="publication-year">2026</span>AI 시대 생각의 기술: 내가 선택하는 삶</h4>
+            </div>
+            <div class="publication-item">
+                <h4><span class="publication-year">2022</span>메타버스 쫌 아는 10대</h4>
+            </div>
+            <div class="publication-item">
+                <h4><span class="publication-year">2020</span>인공지능시대, 십대를 위한 미디어 수업</h4>
+            </div>
+        </section>
+
+        <section id="students">
+            <h2>Students & Alumni</h2>
+            
+            <h3>박사 과정</h3>
+            <div class="students-grid">
+                <div class="student-card"><div class="student-name">양경철</div><div class="student-level">박사과정</div></div>
+                <div class="student-card"><div class="student-name">김성환</div><div class="student-level">박사과정</div></div>
+                <div class="student-card"><div class="student-name">김경미</div><div class="student-level">박사과정</div></div>
+                <div class="student-card"><div class="student-name">조혜원</div><div class="student-level">박사과정</div></div>
+                <div class="student-card"><div class="student-name">민선홍</div><div class="student-level">박사과정</div></div>
+                <div class="student-card"><div class="student-name">정지웅</div><div class="student-level">박사과정</div></div>
+            </div>
+
+            <h3>석사 과정</h3>
+            <div class="students-grid">
+                <div class="student-card"><div class="student-name">이신혜</div><div class="student-level">석사과정</div></div>
+                <div class="student-card"><div class="student-name">조한대</div><div class="student-level">석사과정</div></div>
+                <div class="student-card"><div class="student-name">최지숙</div><div class="student-level">석사과정</div></div>
+                <div class="student-card"><div class="student-name">한성주</div><div class="student-level">석사과정</div></div>
+            </div>
+
+            <h3>졸업생 (박사)</h3>
+            <div class="students-grid">
+                <div class="student-card"><div class="student-name">송해엽</div><div class="student-level">박사 졸업</div></div>
+                <div class="student-card"><div class="student-name">임현석</div><div class="student-level">박사 졸업</div></div>
+                <div class="student-card"><div class="student-name">유은</div><div class="student-level">박사 졸업</div></div>
+                <div class="student-card"><div class="student-name">박신영</div><div class="student-level">박사 졸업</div></div>
+                <div class="student-card"><div class="student-name">황유진</div><div class="student-level">박사 졸업</div></div>
+                <div class="student-card"><div class="student-name">오상연</div><div class="student-level">박사 졸업</div></div>
+            </div>
+
+            <h3>졸업생 (석사)</h3>
+            <div class="students-grid">
+                <div class="student-card"><div class="student-name">임권일</div><div class="student-level">석사 졸업</div></div>
+                <div class="student-card"><div class="student-name">이충헌</div><div class="student-level">석사 졸업</div></div>
+                <div class="student-card"><div class="student-name">남윤지</div><div class="student-level">석사 졸업</div></div>
+                <div class="student-card"><div class="student-name">이형두</div><div class="student-level">석사 졸업</div></div>
+                <div class="student-card"><div class="student-name">최덕재</div><div class="student-level">석사 졸업</div></div>
+                <div class="student-card"><div class="student-name">홍연주</div><div class="student-level">석사 졸업</div></div>
+            </div>
+        </section>
+
+        <section id="news">
+            <h2>News</h2>
+            
+            <div class="news-item">
+                <div class="news-date">2026.02</div>
+                <h4>문술미래 오상연 박사 졸업</h4>
+            </div>
+
+            <div class="news-item">
+                <div class="news-date">2023.02</div>
+                <h4>정재민 교수님 인문사회융합과학대학장 취임</h4>
+                <a href="https://www.yna.co.kr/view/AKR20230629169000005" target="_blank">뉴스 보기 →</a>
+            </div>
+
+         </section>
+
+        <section id="contact">
+            <h2>Contact</h2>
+            <div class="contact-info">
+                <div class="contact-card">
+                    <h3>대전 오피스</h3>
+                    <p>KAIST N5동 2239호</p>
+                    <p>전화: 042-350-4030</p>
+                </div>
+                <div class="contact-card">
+                    <h3>서울 오피스</h3>
+                    <p>수펙스관 428호</p>
+                    <p>전화: 02-958-3519</p>
+                </div>
+                <div class="contact-card">
+                    <h3>이메일</h3>
+                    <p>nettong@kaist.ac.kr</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Hyperconnected Media Lab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    document.getElementById('navLinks').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
